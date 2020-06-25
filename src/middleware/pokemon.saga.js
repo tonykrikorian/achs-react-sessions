@@ -1,9 +1,15 @@
-import { all, takeLatest, call, put, delay } from "redux-saga/effects";
+import { all, takeLatest, call, put, delay, select } from "redux-saga/effects";
 import PokemonVault from "../actions/pokemon.actions";
 import WebClient from "../services/web-client";
 
 function* getPokemon({ payload }) {
   try {
+    /**
+     * Obtiene el store actual, esto sirve para aplicar logica de negocio en
+     * en el middleware en lugar de los actions
+     */
+    //const state = yield select();
+
     // const { data, status } = yield WebClient.Pokemon.Get(payload);
     const { data, status } = yield call(WebClient.pokemon.get, payload);
 
